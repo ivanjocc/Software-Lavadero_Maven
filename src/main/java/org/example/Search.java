@@ -20,13 +20,13 @@ public class Search {
     private JTextField fechaTxt;
     private JButton buscarBtn;
     private JPanel carroPanel;
-    private JTable dataTable;
+    private JTable datasTable;
     final private DefaultTableModel tableModel;
 
     public Search() {
         String[] columnNames = {"Placa", "Propietario", "Teléfono", "Fecha", "Hora", "Valor", "Tamaño", "Tipo de Lavado", "Adicional"};
         tableModel = new DefaultTableModel(columnNames, 0);
-        dataTable.setModel(tableModel);
+        datasTable.setModel(tableModel);
 
         // Cargar todos los datos al inicio
         cargarDatosDesdeMongoDB();

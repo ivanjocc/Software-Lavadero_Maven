@@ -157,7 +157,7 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="54a8a" class="javax.swing.JTable" binding="dataTable">
+                      <component id="54a8a" class="javax.swing.JTable" binding="datasTable">
                         <constraints/>
                         <properties/>
                       </component>

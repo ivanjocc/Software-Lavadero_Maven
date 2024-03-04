@@ -30,7 +30,7 @@ public class Register {
     private JTextField telefonoTxt;
     private JTextField fechaTxt;
     private JTextField valorTxt;
-    private JButton enviarBtn;
+    private JButton sendBtn;
     private JPanel btnPanel;
     private JPanel infoPanel;
     private JPanel detallesPanel;
@@ -42,7 +42,7 @@ public class Register {
 
     public Register() {
 //        Listener para enviar la info a la base de datos
-        enviarBtn.addActionListener(new ActionListener() {
+        sendBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
