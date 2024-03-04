@@ -5,13 +5,8 @@ import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -98,6 +93,10 @@ public class Register {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         hourTxt.setText(formatter.format(now));
 
+    }
+
+    public JButton getListaBtn() {
+        return listaBtn;
     }
 
     public JPanel getMainPanel() {

@@ -4,7 +4,11 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoDatabase;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class MongoDBHelper {
+    private static final Logger logger = LoggerFactory.getLogger(MongoDBHelper.class);
     private MongoDatabase database;
 
     public MongoDBHelper() {
@@ -13,7 +17,7 @@ public class MongoDBHelper {
             MongoClient mongoClient = MongoClients.create(connectionString);
             database = mongoClient.getDatabase("lavadero");
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error al conectar con la base de datos MongoDB", e);
         }
     }
 
