@@ -22,8 +22,7 @@ public class MongoDBHelper {
             prop.load(input);
             String connectionString = prop.getProperty("mongodb.uri");
             MongoClient mongoClient = MongoClients.create(connectionString);
-            // Asume que el nombre de la base de datos está incluido en la URI
-            database = mongoClient.getDatabase("lavadero"); // O extrae el nombre de la base de datos de la URI si es variable
+            database = mongoClient.getDatabase("lavadero");
         } catch (IOException ex) {
             logger.error("Error al cargar la configuración de MongoDB", ex);
         }

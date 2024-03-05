@@ -7,7 +7,7 @@ public class MainFrame {
     final private JFrame frame;
     final private Register registerPanel;
     final private Search searchPanel;
-    final private JPanel cards; // Un panel que usa CardLayout
+    final private JPanel cards;
     final static String REGISTERPANEL = "Card with Register";
     final static String SEARCHPANEL = "Card with Search";
 

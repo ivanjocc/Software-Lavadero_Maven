@@ -104,17 +104,29 @@ public class Register {
     }
 
 //    Funcion para enviar info a la base de datos
-    private void enviarDatos() {
+private void enviarDatos() {
+    // Verificar si los campos de placa y valor no están vacíos
+    if (placaTxt.getText().trim().isEmpty() || valorTxt.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Error: los campos de placa y valor son obligatorios.");
+        return;
+    }
+
+    // Intentar convertir el valor a número, si es necesario, y enviar datos
+    try {
         MongoDBHelper db = new MongoDBHelper();
         MongoDatabase database = db.getDatabase();
         MongoCollection<Document> collection = database.getCollection("info");
 
-        Document doc = new Document("placa", placaTxt.getText())
-                .append("propietario", propietarioTxt.getText())
-                .append("telefono", Integer.parseInt(telefonoTxt.getText()))
-                .append("fecha", fechaTxt.getText())
-                .append("hora", hourTxt.getText())
-                .append("valor", Integer.parseInt(valorTxt.getText()))
+        // Convertir el valor del teléfono a entero solo si no está vacío
+        Integer telefono = telefonoTxt.getText().trim().isEmpty() ? null : Integer.parseInt(telefonoTxt.getText());
+        Integer valor = Integer.parseInt(valorTxt.getText().trim());
+
+        Document doc = new Document("placa", placaTxt.getText().trim())
+                .append("propietario", propietarioTxt.getText().trim())
+                .append("telefono", telefono)
+                .append("fecha", fechaTxt.getText().trim())
+                .append("hora", hourTxt.getText().trim())
+                .append("valor", valor)
                 .append("tamano", obtenerTamano())
                 .append("tipo_lavado", obtenerTipoLavado())
                 .append("adicional", obtenerAdicional());
@@ -122,7 +134,12 @@ public class Register {
         collection.insertOne(doc);
 
         resetFormulario();
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Error: hay un campo no válido.");
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al enviar datos: " + e.getMessage());
     }
+}
 
     // Método para obtener el tamaño seleccionado
     private String obtenerTamano() {
