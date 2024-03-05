@@ -85,10 +85,10 @@ public class Search {
             Object[] rowData = new Object[]{
                     doc.getString("placa"),
                     doc.getString("propietario"),
-                    doc.get("telefono", Integer.class), // Uso de get() con tipo para manejar posibles nulos
+                    doc.get("telefono", Integer.class),
                     doc.getString("fecha"),
                     doc.getString("hora"),
-                    doc.get("valor", Integer.class), // Uso de get() con tipo para manejar posibles nulos
+                    doc.get("valor", Integer.class),
                     doc.getString("tamano"),
                     doc.getString("tipo_lavado"),
                     doc.getString("adicional")
