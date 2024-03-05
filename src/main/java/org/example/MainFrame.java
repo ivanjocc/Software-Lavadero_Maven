@@ -1,11 +1,15 @@
 package org.example;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainFrame {
     final private JFrame frame;
     final private Register registerPanel;
     final private Search searchPanel;
+    final private JPanel cards; // Un panel que usa CardLayout
+    final static String REGISTERPANEL = "Card with Register";
+    final static String SEARCHPANEL = "Card with Search";
 
     public MainFrame() {
         frame = new JFrame("Ecowash");
@@ -17,26 +21,23 @@ public class MainFrame {
         registerPanel = new Register();
         searchPanel = new Search();
 
-        // Configurar el panel inicial
-        frame.setContentPane(registerPanel.getMainPanel());
+        // Configurar CardLayout
+        cards = new JPanel(new CardLayout());
+        cards.add(registerPanel.getMainPanel(), REGISTERPANEL);
+        cards.add(searchPanel.getMainPanel(), SEARCHPANEL);
 
-        // Configuración de botones para cambiar paneles
-        registerPanel.getListaBtn().addActionListener(e -> showSearchPanel());
-        searchPanel.getIngresarBtn().addActionListener(e -> showRegisterPanel());
+        frame.setContentPane(cards);
+
+        // Configuración de botones para cambiar paneles usando CardLayout
+        registerPanel.getListaBtn().addActionListener(e -> showCard(SEARCHPANEL));
+        searchPanel.getIngresarBtn().addActionListener(e -> showCard(REGISTERPANEL));
 
         frame.setVisible(true);
     }
 
-    private void showRegisterPanel() {
-        frame.setContentPane(registerPanel.getMainPanel());
-        frame.revalidate();
-        frame.repaint();
-    }
-
-    private void showSearchPanel() {
-        frame.setContentPane(searchPanel.getMainPanel());
-        frame.revalidate();
-        frame.repaint();
+    private void showCard(String card) {
+        CardLayout cl = (CardLayout)(cards.getLayout());
+        cl.show(cards, card);
     }
 
     public static void main(String[] args) {
